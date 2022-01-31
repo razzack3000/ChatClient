@@ -1,11 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom'
-import './index.css'
+import '../index.css'
+import List from './list.js'
 
 function App(props) {
 
   return (
-    <p> Hello World</p>
+
+    <React.Fragment>
+      <h1 className="title"> Todo List </h1>
+       <List />
+    </React.Fragment>
+
   )
 
 }
