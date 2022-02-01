@@ -60,8 +60,8 @@ class List extends React.Component {
         <li key={`${index}Key`}>
           {element}
           <button onClick={() => {
-            const newArray = this.state.listItem.filter(function(item) {
-             return item !== element
+            const newArray = this.state.listItem.filter(function(item, i) {
+             return i !== index
           })
           this.setState({listItem: newArray}) }}
            >X</button>
