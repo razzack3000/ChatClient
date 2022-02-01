@@ -9,11 +9,11 @@ class List extends React.Component {
 
       this.state = {
        listItem: [],
-       value:'',
        text:''
       }
 
       this.valueSetter = this.valueSetter.bind(this);
+      this.submitTodo = this.submitTodo.bind(this);
     }
 
 
@@ -21,6 +21,7 @@ class List extends React.Component {
       this.setState({
         [e.target.name]: e.target.value
       })
+      event.preventDefault();
     }
 
     submitTodo(e){
@@ -28,12 +29,26 @@ class List extends React.Component {
       this.setState({
         listItem: [...this.state.listItem, this.state.text]
       })
+      event.preventDefault();
     }
 
   render() {
     return (
     <React.Fragment>
-      <ul>
+
+        <form onSubmit={this.submitTodo}>
+        <label>
+        Add todo item:
+        <input value={this.state.text} name='text' onChange={this.valueSetter}/>
+        </label>
+
+        <label>
+        <input type="submit" value="Add" />
+        </label>
+
+        </form>
+
+        <ul>
         {this.state.listItem.map((index) => (
         <li>
           {index}
@@ -41,17 +56,7 @@ class List extends React.Component {
         )
        )}
       </ul>
-        <form onSubmit={this.submitTodo}>
-        Add todo item:
-        <input value={this.state.text} name='text' onChange={this.valueSetter}/>
-
-        <input type="submit" value="Add" />
-        </form>
-
-
     </React.Fragment>
-
-
       )
     }
 }
