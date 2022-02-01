@@ -21,7 +21,7 @@ class List extends React.Component {
       this.setState({
         [e.target.name]: e.target.value
       })
-      event.preventDefault();
+      //e.preventDefault();
     }
 
     submitTodo(e){
@@ -29,7 +29,14 @@ class List extends React.Component {
       this.setState({
         listItem: [...this.state.listItem, this.state.text]
       })
-      event.preventDefault();
+      e.preventDefault();
+    }
+
+    deleteListItem() {
+      const newArray = this.state.listItem.filter(function(item) {
+        return item !== index
+      })
+      this.setState({listItem: newArray})
     }
 
   render() {
@@ -49,9 +56,15 @@ class List extends React.Component {
         </form>
 
         <ul>
-        {this.state.listItem.map((index) => (
-        <li>
-          {index}
+        {this.state.listItem.map((element,index) => (
+        <li key={`${index}Key`}>
+          {element}
+          <button onClick={() => {
+            const newArray = this.state.listItem.filter(function(item) {
+             return item !== element
+          })
+          this.setState({listItem: newArray}) }}
+           >X</button>
         </li>
         )
        )}
